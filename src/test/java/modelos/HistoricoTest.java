@@ -29,5 +29,4 @@ public class HistoricoTest {
         assertNotNull("Historico nao pode ser nulo", h);
         assertTrue(h.getNota() <= 100 && h.getNota() >= 0);
     }
-    
 }

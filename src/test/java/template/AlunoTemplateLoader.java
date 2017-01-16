@@ -23,6 +23,10 @@ public class AlunoTemplateLoader implements TemplateLoader {
             add("nome", name());
             add("matricula", regex("1[10-16][1-2]031\\d{3}"));
             add("historico", has(10).of(Historico.class, "valido"));
+        }}).addTemplate("nota7", new Rule(){{
+            add("nome", name());
+            add("matricula", regex("1[10-16][1-2]031\\d{3}"));
+            add("historico", has(2).of(Historico.class, "nota7"));
         }});
     }
     

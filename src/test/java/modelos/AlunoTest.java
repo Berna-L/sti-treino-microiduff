@@ -7,6 +7,7 @@ package modelos;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import java.util.List;
 import org.apache.commons.math.exception.NullArgumentException;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -45,6 +46,14 @@ public class AlunoTest {
  public void appendHistoricoComNuloDaErro(){
      Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
      aluno.appendHistorico(null);
+ }
+ 
+ @Test
+ public void historicoDeAlunoImutavel(){
+     Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
+     List<Historico> h = aluno.getHistorico();
+     h.add(mock(Historico.class));
+     assertNotEquals(h, aluno.getHistorico());
  }
  
 }
