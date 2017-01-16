@@ -22,8 +22,8 @@ public class HistoricoTemplateLoader implements TemplateLoader {
     public void load() {
         Fixture.of(Historico.class).addTemplate("valido", new Rule() {{
             add("disciplina", regex("TCC00\\d{3}"));
-            add("periodo", regex("20[0-1]\\d{1}[1-2]"));
-            add("nota", random(Float.class, range(0.0f, 10.0f)));
+            add("periodo", regex("201[0-6]][1-2]"));
+            add("nota", random(Integer.class, range(0, 100)));
         }});
     }
 }

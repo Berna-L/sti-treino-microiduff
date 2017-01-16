@@ -20,8 +20,8 @@ public class AlunoTemplateLoader implements TemplateLoader {
     @Override
     public void load() {
         Fixture.of(Aluno.class).addTemplate("valido", new Rule(){{
-            add("nome", firstName());
-            add("matricula", regex("\\d{9}"));
+            add("nome", name());
+            add("matricula", regex("1[10-16][1-2]031\\d{3}"));
             add("historico", has(10).of(Historico.class, "valido"));
         }});
     }
