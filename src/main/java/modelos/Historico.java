@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aluno;
+package modelos;
 
 import java.util.Calendar;
 
@@ -14,10 +14,10 @@ import java.util.Calendar;
 public class Historico {
     
     private final String disciplina;
-    private final Calendar periodo;
+    private final String periodo;
     private final float nota;
     
-    public Historico(String disciplina, Calendar periodo, float nota){
+    public Historico(String disciplina, String periodo, float nota){
         this.disciplina = disciplina;
         this.periodo = periodo;
         this.nota = nota;
@@ -27,8 +27,8 @@ public class Historico {
         return disciplina;
     }
 
-    public Calendar getPeriodo() {
-        return (Calendar) periodo.clone();
+    public String getPeriodo() {
+        return periodo;
     }
 
     public float getNota() {

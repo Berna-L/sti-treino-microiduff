@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aluno;
+package modelos;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public class Aluno {
     public Aluno(String nome, String matricula) {
         this.nome = nome;
         this.matricula = matricula;
-        this.historico = new LinkedList<>();
+        this.historico = new ArrayList<>();
     }
 
     public float getCr() {
@@ -42,7 +42,7 @@ public class Aluno {
     }
 
     public List<Historico> getHistorico() {
-        return new LinkedList<>(this.historico);
+        return new ArrayList<>(this.historico);
     }
 
     public void appendHistorico(Historico instancia){
@@ -51,5 +51,4 @@ public class Aluno {
         }
         this.historico.add(instancia);
     }
-    
 }
