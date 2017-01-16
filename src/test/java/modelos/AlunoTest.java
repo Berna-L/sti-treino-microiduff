@@ -56,4 +56,12 @@ public class AlunoTest {
      assertNotEquals(h, aluno.getHistorico());
  }
  
+ @Test
+ public void imprimeCorretamente(){
+     Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
+     String expected = aluno.getNome() + " " + aluno.getMatricula() + " " + " " + " " + " " + " " + " " + " " + " " + " ";
+//     String expected = aluno.getNome() + " " + aluno.getMatricula() + " " + aluno.getCurso() + " " + aluno.getLocalidade() + " " + aluno.getTurno() + " " + aluno.getAnoSemestreIngresso() + " " + aluno.getCr();
+     assertEquals(expected, aluno.toString());
+ }
+ 
 }
