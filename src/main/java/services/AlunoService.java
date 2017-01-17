@@ -29,5 +29,5 @@ public class AlunoService {
         cr /= aluno.getHistorico().size();
         aluno.setCr(cr);
         alunoDAO.saveAluno(aluno);
-    } 
+    }
 }
