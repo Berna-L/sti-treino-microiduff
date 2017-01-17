@@ -5,10 +5,14 @@
  */
 package modelos;
 
+import enums.Curso;
+import enums.Localidade;
+import enums.Turno;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,34 +26,64 @@ public class Aluno {
     
     private final String nome;
     
+    private final Curso curso;
+    
     private final String matricula;
+    
+    private final Localidade localidade;
+    
+    private final Turno turno;
     
     private final List<Historico> historico;
     
     private float cr;
 
-    public Aluno(String nome, String matricula) {
+    public Aluno(String nome, Curso curso, String matricula, Localidade localidade, Turno turno) {
         this.nome = nome;
+        this.curso = curso;
         this.matricula = matricula;
+        this.localidade = localidade;
+        this.turno = turno;
         this.historico = new ArrayList<>();
         this.cr = 0.0f;
     }
-
     @Printable(posicao=0)
     public String getNome() {
         return nome;
     }
-
+    
     @Printable(posicao=1)
+    public Curso getCurso() {
+        return curso;
+    }
+
+    @Printable(posicao=2)
     public String getMatricula() {
         return matricula;
     }
 
+    @Printable(posicao=3)
+    public Localidade getLocalidade() {
+        return localidade;
+    }
+    
+    @Printable(posicao=4)
+    public Turno getTurno() {
+        return turno;
+    }
+    
+    @Printable(posicao=5)
+    public String getAnoSemestreIngresso() {
+        String ano = "20" + getMatricula().substring(0, 2);
+        String semestre = getMatricula().substring(2, 3);
+        return ano + "/" + semestre;
+    }
+  
     public List<Historico> getHistorico() {
         return new ArrayList<>(this.historico);
     }
 
-    @Printable(posicao=2)
+    @Printable(posicao=6)
     public float getCr() {
         return cr;
     }

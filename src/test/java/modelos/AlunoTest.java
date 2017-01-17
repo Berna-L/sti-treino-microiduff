@@ -20,47 +20,53 @@ import static org.mockito.Mockito.*;
  */
 public class AlunoTest {
     
- @BeforeClass
- public static void setUp(){
-     FixtureFactoryLoader.loadTemplates("template");
- }
+    @BeforeClass
+    public static void setUp(){
+        FixtureFactoryLoader.loadTemplates("template");
+    }
+
+    @Test
+    public void fixtureAluno(){
+        Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
+        assertNotNull("Aluno não pode ser nulo", aluno);
+        assertNotNull("Histórico não pode ser nulo", aluno.getHistorico());
+        assertEquals(10, aluno.getHistorico().size());
+    }
+
+    @Test
+    public void appendHistoricoFunciona(){
+        Historico h = mock(Historico.class);
+        Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
+        int tamanhoAnterior = aluno.getHistorico().size();
+        aluno.appendHistorico(h);
+        assertEquals(tamanhoAnterior + 1, aluno.getHistorico().size());
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void appendHistoricoComNuloDaErro(){
+        Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
+        aluno.appendHistorico(null);
+    }
  
- @Test
- public void fixtureAluno(){
-     Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
-     assertNotNull("Aluno não pode ser nulo", aluno);
-     assertNotNull("Histórico não pode ser nulo", aluno.getHistorico());
-     assertEquals(10, aluno.getHistorico().size());
- }
-    
- @Test
- public void appendHistoricoFunciona(){
-     Historico h = mock(Historico.class);
-     Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
-     int tamanhoAnterior = aluno.getHistorico().size();
-     aluno.appendHistorico(h);
-     assertEquals(tamanhoAnterior + 1, aluno.getHistorico().size());
- }
+    @Test
+    public void historicoDeAlunoImutavel(){
+        Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
+        List<Historico> h = aluno.getHistorico();
+        h.add(mock(Historico.class));
+        assertNotEquals(h, aluno.getHistorico());
+    }
  
- @Test(expected = NullPointerException.class)
- public void appendHistoricoComNuloDaErro(){
-     Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
-     aluno.appendHistorico(null);
- }
- 
- @Test
- public void historicoDeAlunoImutavel(){
-     Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
-     List<Historico> h = aluno.getHistorico();
-     h.add(mock(Historico.class));
-     assertNotEquals(h, aluno.getHistorico());
- }
- 
- @Test
- public void imprimeCorretamente(){
-     Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
-     String expected = aluno.getNome() + " " + aluno.getMatricula() + " " + aluno.getCr();
-     String str = aluno.toString();
-     assertEquals(expected, aluno.toString());
- }
+    @Test
+    public void imprimeCorretamente(){
+        Aluno aluno = Fixture.from(Aluno.class).gimme("valido");
+        String expected = aluno.getNome()
+                + " " + aluno.getCurso().toString()
+                + " " + aluno.getMatricula()
+                + " " +aluno.getLocalidade().toString()
+                + " " + aluno.getTurno().toString()
+                + " " + aluno.getAnoSemestreIngresso()
+                + " " + aluno.getCr();
+        String str = aluno.toString();
+        assertEquals(expected, aluno.toString());
+    }
 }

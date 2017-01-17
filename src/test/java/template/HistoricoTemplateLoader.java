@@ -24,6 +24,10 @@ public class HistoricoTemplateLoader implements TemplateLoader {
             add("disciplina", regex("TCC00\\d{3}"));
             add("periodo", regex("201[0-6]][1-2]"));
             add("nota", random(Integer.class, range(0, 100)));
+        }}).addTemplate("nota7", new Rule() {{
+            add("disciplina", regex("TCC00\\d{3}"));
+            add("periodo", regex("201[0-6]][1-2]"));
+            add("nota", 7);
         }});
     }
 }
